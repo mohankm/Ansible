@@ -1,0 +1,15 @@
+---
+- name: This is a Simple Apache Install Project
+  hosts: webservers
+  sudo: yes
+  tasks:
+  - name: ping all hosts
+    ping:
+  tasks:
+  - name: Ensure Latest Apache is installed
+    yum: pkg=httpd state=latest
+  - name: Making Sure that Apache is running
+    service: name=httpd state=started
+  - name: Copy The Static Asset
+    copy : src=/home/ec2-user/Ansible/SimpleApacheInstall/index.html dest=/var/www/html
+
